@@ -1,0 +1,8 @@
+version: "3.3"
+
+services:
+  projeto-docker:
+    container_name: projeto-docker
+    ports:
+      - '3006:3000'
+      - "3010:3010"

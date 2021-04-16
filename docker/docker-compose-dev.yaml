@@ -1,0 +1,19 @@
+version: '3.3'
+
+services:
+  projeto-docker:
+    container_name: projeto-docker
+    command: yarn start
+    build:
+      context: ../
+      dockerfile: ./docker/DockerFile
+    environment:
+      - REACT_APP_API_DOMAIN=http://localhost:3010
+      - REACT_APP_DOMAIN=http://localhost:3006
+    ports:
+      - '3006:3000'
+      - '3010:3010'
+      - '9228:9229'
+    volumes:
+      - ../packages/frontend/src:/usr/projeto-docker/frontend/src
+      - ../packages/backend/src:/usr/projeto-docker/backend/src

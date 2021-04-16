@@ -1,0 +1,1 @@
+export { default as LeftBackground } from './left_background.png';

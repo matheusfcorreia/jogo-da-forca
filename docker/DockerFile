@@ -1,0 +1,17 @@
+FROM node:10.16-alpine
+
+
+RUN apk update && \
+    apk add openssl && \
+    apk add yarn
+ 
+WORKDIR /usr/projeto-docker/
+
+# Backend configs
+COPY ./package.json ./ecosystem.config.js ./start-script.js ./
+COPY ./packages/backend/ ./backend/
+
+RUN yarn global add pm2
+
+# Frontend configs
+COPY ./packages/frontend/ ./frontend/
