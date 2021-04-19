@@ -3,10 +3,10 @@ import LogsDatabase from '../services/LogsDatabase';
 class LogsController {
   async newLog(req, res) {
     try {
-      const { name, description } = req.body;
+      const { identification, description } = req.body;
       const date = new Date();
 
-      await LogsDatabase.insert({ name, description, date });
+      await LogsDatabase.insert({ identification, description, date });
 
       return res.sendStatus(200);
     } catch (err) {

@@ -1,42 +1,42 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import Container, { HeaderBar, StyledDeliveryList } from './style';
 import { LogsCard } from '../../components';
-
-import { Creators as deliveriesActions } from '../../store/ducks/deliveries';
+import { RequestGetLogs } from '../../services/api';
 
 const Logs = ({ status }) => {
   const dispatch = useDispatch();
+  const [allLogs, setAllLogs] = useState([]);
 
-  const deliveries = useSelector(s => s.deliveries.deliveries);
-  const generalFilter = useSelector(s => s.deliveries.filters.general);
-  const statusFilter = useSelector(s => s.deliveries.status);
-
+  const getAllLogs = async () => {
+    const res = await RequestGetLogs();
+    setAllLogs(res.data);
+  }
 
   useEffect(() => {
-    dispatch(deliveriesActions.getDeliveries());
-  }, [dispatch, generalFilter, statusFilter]);
+    getAllLogs()
+  }, [dispatch]);
 
   return (
     <Container>
       <HeaderBar>
         Registros de Entrada
       </HeaderBar>
-      <LogsList {...{ status, deliveries }} />
+      <LogsList {...{ status, allLogs }} />
     </Container>
   );
 };
 
-const LogsList = ({ status, deliveries }) => {
+const LogsList = ({ allLogs }) => {
   return (
-    <StyledDeliveryList className={deliveries.length < 1 && 'empty'} empty={deliveries.length < 1}>
-      {deliveries.map((delivery, key) => <LogsCard {...{ delivery, status, key }} />)}
+    <StyledDeliveryList >
+      {allLogs.map((log, key) => <LogsCard {...{ log, key }} />)}
+      {/* <LogsCard />
       <LogsCard />
       <LogsCard />
       <LogsCard />
-      <LogsCard />
-      <LogsCard />
+      <LogsCard /> */}
     </StyledDeliveryList>
   );
 };

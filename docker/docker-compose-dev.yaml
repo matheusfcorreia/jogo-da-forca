@@ -13,7 +13,6 @@ services:
     ports:
       - '3006:3000'
       - '3010:3010'
-      - '9228:9229'
     volumes:
       - ../packages/frontend/src:/usr/projeto-docker/frontend/src
       - ../packages/backend/src:/usr/projeto-docker/backend/src

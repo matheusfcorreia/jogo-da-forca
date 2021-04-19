@@ -3,8 +3,6 @@ import styled from 'styled-components';
 import colors from '../../assets/colors';
 
 const Container = styled.div`
-  width: 780px;
-  height: 100px;
   box-shadow: 0 0 6px 1px #0000001f;
   border-radius: 5px;
   padding: 15px;
@@ -12,6 +10,10 @@ const Container = styled.div`
   grid-template-rows: min-content 1fr 16px;
   grid-row-gap: 11px;
   color: ${colors.grayText};
+  margin-right: 25px;
+
+  grid-column: 2 / 10;
+  justify-content: space-between;
 `;
 
 export const DfeInfos = styled.div`

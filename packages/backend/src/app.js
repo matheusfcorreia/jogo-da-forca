@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const readDirRecursive = require('fs-readdir-recursive');
 
@@ -21,11 +22,7 @@ class AppController {
         parameterLimit: 50000,
       })
     );
-
-    this.express.use('*', (req, resp, next) => {
-      req.user = undefined;
-      next();
-    });
+    this.express.use(cors());
   }
 
   async routes() {

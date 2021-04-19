@@ -1,6 +1,6 @@
 {
-  "short_name": "Portal do Embarcador",
-  "name": "Portal do Embarcador",
+  "short_name": "Gerador de Logs",
+  "name": "Gerador de Logs",
   "icons": [
     {
       "src": "favicon.ico",

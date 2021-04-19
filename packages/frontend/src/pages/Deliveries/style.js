@@ -31,10 +31,10 @@ export const StyledDeliveryList = styled.div`
   margin-top: 30px;
   grid-column: 3 / 13;
   display: grid;
-  grid-template-columns: repeat(4, 228px);
   grid-auto-rows: min-content;
   justify-content: space-between;
   grid-row-gap: 15px;
+  scroll-behavior: auto;
 
   @media screen and (min-width: 1366px) {
     grid-column: 3 / 13;
@@ -44,7 +44,7 @@ export const StyledDeliveryList = styled.div`
     min-height: 300px;
   }
 
-  &.empty {
+  /* &.empty {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     place-items: center;
@@ -61,7 +61,7 @@ export const StyledDeliveryList = styled.div`
         fill: ${colors.grayText};
       }
     }
-  }
+  } */
 `;
 
 export default Container;
