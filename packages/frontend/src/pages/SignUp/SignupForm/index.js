@@ -12,22 +12,23 @@ const SignupForm = () => {
   const [descriptionError, setDescriptionError] = useState(false)
 
   const description = useRef();
-  const identification = useRef();
+  const userName = useRef();
 
   const registerLog = async () => {
-    await RequestPostLogs({ description: description.current.value, identification: identification.current.value })
+    await RequestPostLogs({ description: description.current.value, identification: userName.current.value })
   }
 
   const onSubmitSignUpForm = async event => {
     event.preventDefault();
 
-    if (description.current.value.length === 0 || identification.current.value.length === 0) {
-      if (description.current.value.length === 0) setDescriptionError(true);
-      if (identification.current.value.length === 0) setIdentificationError(true);
-    } else {
-      await registerLog();
-      history.push('/logs/lista');
-    }
+    localStorage.setItem('userName', userName.current.value)
+    // if (description.current.value.length === 0 || identification.current.value.length === 0) {
+    //   if (description.current.value.length === 0) setDescriptionError(true);
+    //   if (identification.current.value.length === 0) setIdentificationError(true);
+    // } else {
+    //   await registerLog();
+    history.push('/play');
+    // }
   };
 
   const removeError = errorType => {
@@ -45,23 +46,15 @@ const SignupForm = () => {
   return (
     <Form onSubmit={onSubmitSignUpForm}>
       <LabeledInput
-        ref={identification}
-        title="Identificação"
-        placeholder="digite a identificação"
+        ref={userName}
+        title="Nome"
+        placeholder="digite seu nome"
         onFocus={() => removeError('IDENTIFICATION')}
         error={!!identificationError}
         errorMsg={'Insira uma identificação do log'}
       />
-      <LabeledInput 
-        ref={description}
-        title="Descrição"
-        placeholder="digite uma descrição para o acesso"
-        onFocus={() => removeError('DESCRIPTION')}
-        error={!!descriptionError}
-        errorMsg={'Insira uma descrição'}
-      />
       <div className="buttons">
-        <Button children="GERAR" type="submit" />
+        <Button children="JOGAR" type="submit" />
       </div>
     </Form>
   );

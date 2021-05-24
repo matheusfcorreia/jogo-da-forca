@@ -1,2 +1,2 @@
 export { default as SignUp } from './SignUp'; 
-export { default as Deliveries } from './Deliveries'; 
+export { default as Game } from './Game'; 

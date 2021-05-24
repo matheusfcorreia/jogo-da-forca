@@ -2,29 +2,29 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 import { PageWithTopBar } from 'components/';
-import { Deliveries, SignUp } from 'pages/';
+import { Game, SignUp } from 'pages/';
 
 const MainRoutes = () => {
   return (
     <Switch>
       <Route
         exact
-        path="/logs/lista"
+        path="/play"
         render={() => (
           <PageWithTopBar>
-            <Deliveries status="shipped" />
+            <Game />
           </PageWithTopBar>
         )}
       />
       <Route
         exact
-        path="/logs/novo"
+        path="/login"
         render={() => (
           <SignUp />
         )}
       />
 
-      <Redirect to="/logs/novo" />
+      <Redirect to="/login" />
     </Switch>
   );
 };

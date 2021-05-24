@@ -19,7 +19,7 @@ const SignUp = () => {
   return (
     <Container
       logo={false}
-      title="Logs"
+      title="Login"
       right={<SignupForm />}
     />
   )

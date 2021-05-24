@@ -26,13 +26,12 @@ const PageWithTopBar = ({ children }) => {
 const TopBar = () => {
   const history = useHistory();
 
-  const firstOptionClass = window.location.href.includes('entregas-abertas') ? 'active' : '';
   return (
     <>
       <StyledTopBar>
         <Options>
-          <p className={firstOptionClass} onClick={() => history.push('/logs/lista')}>
-            Logs
+          <p onClick={() => {}}>
+            JOGO DA FORCA
           </p>
         </Options>
         <UserOptions />
