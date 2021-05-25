@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const Container = styled.form`
   display: grid;
-  grid-template-rows: 240px 150px 40px;
+  grid-template-rows: 50px 190px 150px 40px;
   grid-template-columns: 1fr;
   align-items: center;
   justify-items: center;
@@ -10,6 +10,21 @@ const Container = styled.form`
   height: 600px;
   margin: auto;
   margin-top: 40px;
+`;
+
+export const PlayersContainer = styled.div`
+  display: grid;
+  grid-template-columns: auto auto auto;
+  width: 800px;
+  justify-content: space-between;
+`;
+
+export const Player = styled.div`
+  font-weight: 600;
+  border-radius: 5px;
+  color: #0072BC;
+  background-color: ${(props) => props.chance ? '#00FFAE' : ''};
+  padding: 5px;
 `;
 
 export const HeaderBar = styled.div`

@@ -4,15 +4,15 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { PageWithTopBar } from 'components/';
 import { Game, SignUp } from 'pages/';
 
-const MainRoutes = () => {
+const MainRoutes = props => {
   return (
     <Switch>
       <Route
         exact
-        path="/play"
+        path="/play/:player1/:player2/:player3"
         render={() => (
           <PageWithTopBar>
-            <Game />
+            <Game { ...props }/>
           </PageWithTopBar>
         )}
       />

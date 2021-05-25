@@ -3,7 +3,7 @@ import LogsController from 'controllers/LogsController';
 class SessionRoutes {
   applyRoutes(routes) {
     routes.post('/logs', LogsController.newLog);
-    routes.get('/logs', LogsController.getAllLogs);
+    routes.get('/word', LogsController.getWord);
   }
 }
 

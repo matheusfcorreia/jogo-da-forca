@@ -14,11 +14,12 @@ class LogsController {
     }
   }
 
-  async getAllLogs(req, res) {
+  async getWord(req, res) {
     try {
-      const logs = await LogsDatabase.select();
+      const words = ['apple', 'pinapple', 'orange', 'strawberry', 'limon', 'strawberry', 'orange', 'strawberry', 'apple', 'pinapple'];
+      const selected = Math.floor(Math.random() * 10);
 
-      return res.status(200).json(logs);
+      return res.status(200).json(words[selected].toUpperCase());
     } catch (err) {
       return res.status(404).json('Não foi possível consultar os logs');
     }

@@ -6,4 +6,4 @@ const api = axios.create({ baseURL: environment.API_DOMAIN });
 
 export const RequestPostLogs = async data => await api.post(`/api/logs`, data);
 
-export const RequestGetLogs = async () => await api.get(`/api/logs`);
+export const RequestGetWord = async () => await api.get(`/api/word`);

@@ -11,23 +11,15 @@ const SignupForm = () => {
   const [identificationError, setIdentificationError] = useState(false)
   const [descriptionError, setDescriptionError] = useState(false)
 
-  const description = useRef();
-  const userName = useRef();
-
-  const registerLog = async () => {
-    await RequestPostLogs({ description: description.current.value, identification: userName.current.value })
-  }
+  const player1 = useRef();
+  const player2 = useRef();
+  const player3 = useRef();
 
   const onSubmitSignUpForm = async event => {
     event.preventDefault();
 
-    localStorage.setItem('userName', userName.current.value)
-    // if (description.current.value.length === 0 || identification.current.value.length === 0) {
-    //   if (description.current.value.length === 0) setDescriptionError(true);
-    //   if (identification.current.value.length === 0) setIdentificationError(true);
-    // } else {
-    //   await registerLog();
-    history.push('/play');
+    // localStorage.setItem('userName', userName.current.value)
+    history.push(`/play/${player1.current.value}/${player2.current.value}/${player3.current.value}`);
     // }
   };
 
@@ -46,8 +38,24 @@ const SignupForm = () => {
   return (
     <Form onSubmit={onSubmitSignUpForm}>
       <LabeledInput
-        ref={userName}
-        title="Nome"
+        ref={player1}
+        title="Jogador 1"
+        placeholder="digite seu nome"
+        onFocus={() => removeError('IDENTIFICATION')}
+        error={!!identificationError}
+        errorMsg={'Insira uma identificação do log'}
+      />
+      <LabeledInput
+        ref={player2}
+        title="Jogador 2"
+        placeholder="digite seu nome"
+        onFocus={() => removeError('IDENTIFICATION')}
+        error={!!identificationError}
+        errorMsg={'Insira uma identificação do log'}
+      />
+      <LabeledInput
+        ref={player3}
+        title="Jogador 3"
         placeholder="digite seu nome"
         onFocus={() => removeError('IDENTIFICATION')}
         error={!!identificationError}
