@@ -1,0 +1,15 @@
+# Jogo da Forca
+Projeto de um jogo desenvolvido no curso de Ciências da Computação, 7º período, voltado ao aprendizado na área sistemas distribuidos. 
+
+
+### Requisitos:
+- NodeJS  na versão ^14
+- Docker na versão 20.10.6
+- Docker-compose na versão 1.28.2
+- Yarn na versão 1.22.10
+
+**v1.0**
+ Como executar:
+
+> **yarn**
+> **yarn dev --build**
