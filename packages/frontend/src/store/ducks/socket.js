@@ -2,19 +2,19 @@ import produce from 'immer';
 import { createActions, createReducer } from 'reduxsauce'; 
 
 const STATE = {
-  loading: false,
+  socket: null,
 };
 
 export const { Types, Creators } = createActions({
-  setLoading: ['value'],
+  setSocket: ['socket'],
 });
 
-const setLoading = (state = STATE, action) => {
+const setSocket = (state = STATE, action) => {
   return produce(state, s => {
-    s.loading = action.value;
+    s.socket = action.socket;
   });
 }
 
 export default createReducer(STATE, {
-  [Types.SET_LOADING]: setLoading,
+  [Types.SET_SOCKET]: setSocket,
 })

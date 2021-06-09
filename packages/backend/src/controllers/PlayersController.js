@@ -1,15 +1,34 @@
-import LogsDatabase from '../services/LogsDatabase';
+import GameDatabase from '../services/GameDatabase';
 
-class LogsController {
-  async store(req, res) {
+class PlayersController {
+  constructor(io) {
+    this.Io = io;
+  }
+
+  async newPlayer(connection_id, name) {
     try {
-      const logs = await LogsDatabase.select();
+      await GameDatabase.insert({ connection_id, name });
+      const players = await GameDatabase.select('PLAYERS');
 
-      return res.status(200).json(logs);
+      console.log(players);
+      this.Io.sockets.emit('reload-players', players);
     } catch (err) {
-      return res.status(404).json('Não foi possível consultar os logs');
+      console.log(err);
+      console.log('Não foi possível consultar os players');
+    }
+  }
+
+  async removePlayer(connection_id) {
+    try {
+      console.log(connection_id);
+      await GameDatabase.delete(connection_id);
+      const players = await GameDatabase.select('PLAYERS');
+
+      this.Io.sockets.emit('reload-players', players);
+    } catch (err) {
+      console.log('Não foi possível remover o player');
     }
   }
 }
 
-export default new LogsController();
+export default PlayersController;

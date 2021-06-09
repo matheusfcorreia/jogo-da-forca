@@ -10,12 +10,9 @@ const App = () => {
 };
 
 const Body = () => {
-  const loading = useSelector(s => s.userInterface.loading);
-
   return (
     <StyledBody>
       <Routes />
-      {loading && <LoadingBackdrop />}
     </StyledBody>
   );
 };

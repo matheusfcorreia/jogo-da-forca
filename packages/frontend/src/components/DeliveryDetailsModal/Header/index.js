@@ -6,7 +6,7 @@ import { StyledHeader } from './style';
 
 import { Close } from '../../../assets/icons';
 
-import { Creators as deliveriesActions } from '../../../store/ducks/deliveries';
+import { Creators as deliveriesActions } from '../../../store/ducks/socket';
 
 const Header = () => {
   const dispatch = useDispatch();

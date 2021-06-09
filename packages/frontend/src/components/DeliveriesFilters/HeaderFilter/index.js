@@ -10,7 +10,7 @@ import {
   ReloadBar,
 } from './style';
 
-import { Creators as deliveriesActions } from '../../../store/ducks/deliveries';
+import { Creators as deliveriesActions } from '../../../store/ducks/socket';
 
 import debounce from '../../../util/debounce';
 

@@ -9,7 +9,7 @@ const MainRoutes = props => {
     <Switch>
       <Route
         exact
-        path="/play/:player1/:player2/:player3"
+        path="/play"
         render={() => (
           <PageWithTopBar>
             <Game { ...props }/>

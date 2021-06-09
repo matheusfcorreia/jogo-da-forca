@@ -1,13 +1,9 @@
 import { combineReducers } from 'redux';
 
-import { default as deliveriesReducer } from './deliveries';
-import { default as userInterfaceReducer } from './userInterface';
-import { default as errorsReducer } from './errors';
+import { default as socketReducer } from './socket';
 
 const reducers = combineReducers({
-  deliveries: deliveriesReducer,
-  userInterface: userInterfaceReducer,
-  errors: errorsReducer,
+  socket: socketReducer,
 });
 
 export default reducers;

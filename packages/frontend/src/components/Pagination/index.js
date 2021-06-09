@@ -5,7 +5,7 @@ import { SecondaryButton } from '@softcenter/react-basic-components';
 import { Plus } from '../../assets/icons';
 import { Container, SelectDiv, Select } from './style';
 
-import { Creators as deliveriesActions } from '../../store/ducks/deliveries';
+import { Creators as deliveriesActions } from '../../store/ducks/socket';
 
 const Pagination = ({ paginationValue }) => {
   const dispatch = useDispatch();
