@@ -18,14 +18,16 @@ class Server {
       const gameController = new GameController(Io);
 
       Io.on('connection', client => {
-        client.emit('word', gameController.selectedWord);
+        setInterval(() => {
+          client.emit('word', gameController.selectedWord);
+        }, 500);
 
         client.on('newPlayer', async name => {
           await playersController.newPlayer(client.id, name);
         });
 
-        client.on('letter', data => {
-          console.log('letter', data);
+        client.on('letter', async letter => {
+          await gameController.tryLetter(client.id, letter);
         });
 
         client.on('word', data => {

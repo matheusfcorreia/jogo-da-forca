@@ -2,25 +2,17 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import io from 'socket.io-client';
 
-import Container, { HeaderBar, Letter, Kick, Button, PlayersContainer, Player } from './style';
+import Container, { HeaderBar, Letter, Kick, Button, PlayersContainer, Player, Tip } from './style';
+
+const socket = io('http://192.168.0.110:3010');
 
 const Game = (props) => {
-  const socket = io('http://192.168.0.110:3010');
-  const params = useParams();
   const kickRef = useRef();
 
   const [word, setWord] = useState([]);
   const [matched, setMatched] = useState([]);
   const [players, setPlayers] = useState([]);
-
-  // const getAllLogs = async () => {
-  //   const res = await RequestGetLogs();
-  //   setAllLogs(res.data);
-  // }
-
-  // useEffect(() => {
-  //   getAllLogs()
-  // }, [dispatch]);
+  const [letter, setLetter] = useState('');
 
   useEffect(() => {
     const username = localStorage.getItem('userName');
@@ -28,49 +20,33 @@ const Game = (props) => {
   }, [])
 
   useEffect(() => {
-    // const getWord = async () => {
-    //   try {
-    //     const { data } = await RequestGetWord();
-
-    //     setWord(data.split(''));
-    //   } catch (error){
-    //     console.log(error);
-    //   }
-    // }
-
-    // if (word.length < 1) getWord();
+    socket.on('reload-players', allPlayers => setPlayers(allPlayers));
 
     socket.on('word', word => setWord(word.WORD.split('')));
-    socket.on('reload-players', allPlayers => {
-      console.log(allPlayers, '======================');
-      setPlayers(allPlayers)
-    });
-  }, [socket]);
+
+    socket.on('setMatched', matchedUpdate => setMatched([...matched, ...matchedUpdate]));
+  }, [socket])
+
+  useEffect(() => {
+    if (letter) {
+      socket.emit('letter', kickRef.current.value.toUpperCase());
+  
+      kickRef.current.value = '';
+      setLetter('');
+    }
+  }, [letter])
 
   const submit = event => {
     event.preventDefault();
-    const indexes = [];
-
-    word.map((letter, index) => {
-      if (letter === kickRef.current.value.toUpperCase() && !matched.includes(index)) {
-        indexes.push(index);
-      }
-    })
-
-    if (indexes.length > 0) {
-      setMatched([...matched, ...indexes]);
-    }
-    kickRef.current.value = '';
+    setLetter(kickRef.current.value.toUpperCase());
   }
 
   return (
     <Container type='submit' onSubmit={submit}>
       <PlayersContainer>
-        {players.map(player => (<Player>{player.NAME}</Player>))}
-        {/* <Player chance={true === 1 ? true : false}>{players[0].NAME}</Player>
-        <Player chance={true === 2 ? true : false}>: </Player>
-        <Player chance={true === 3 ? true : false}>: </Player> */}
+        {players.map((player, i) => (<Player key={i}>{player.NAME} : {player.SCORE}</Player>))}
       </PlayersContainer>
+      <Tip>É UMA FRUTA!</Tip>
       <HeaderBar>
         {word.map((letter, index) => (<Letter key={index} matched={matched} index={index}>{letter}</Letter>))}
       </HeaderBar>

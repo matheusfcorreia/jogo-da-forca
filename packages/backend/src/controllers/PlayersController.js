@@ -7,10 +7,10 @@ class PlayersController {
 
   async newPlayer(connection_id, name) {
     try {
+      console.log('newPlayer', connection_id, name);
       await GameDatabase.insert({ connection_id, name });
       const players = await GameDatabase.select('PLAYERS');
 
-      console.log(players);
       this.Io.sockets.emit('reload-players', players);
     } catch (err) {
       console.log(err);
@@ -20,12 +20,13 @@ class PlayersController {
 
   async removePlayer(connection_id) {
     try {
-      console.log(connection_id);
+      console.log('removePlayer', connection_id);
       await GameDatabase.delete(connection_id);
       const players = await GameDatabase.select('PLAYERS');
 
       this.Io.sockets.emit('reload-players', players);
     } catch (err) {
+      console.log(err);
       console.log('Não foi possível remover o player');
     }
   }

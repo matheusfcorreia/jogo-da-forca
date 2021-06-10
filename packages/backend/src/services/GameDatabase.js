@@ -19,6 +19,8 @@ class GameDatabase {
 
       await db.run(`CREATE TABLE IF NOT EXISTS PLAYERS (${playerTablePattern()})`);
       await db.run(`CREATE TABLE IF NOT EXISTS WORDS (${wordsTablePattern()})`);
+
+      await db.run('DELETE FROM PLAYERS');
       for (const word of wordsList) {
         await db.run(`INSERT INTO WORDS VALUES ('${word}', 'false')`);
       }
@@ -52,12 +54,12 @@ class GameDatabase {
       switch (table) {
         case 'WORDS':
           await db.run(
-            `UPDATE WORDS SET SELECTED = ${value} WHERE CONNECTION_ID = ${connection_id}`
+            `UPDATE WORDS SET SELECTED = ${value} WHERE CONNECTION_ID = '${connection_id}'`
           );
           break;
         case 'PLAYERS':
           await db.run(
-            `UPDATE PLAYERS SET POINTS = ${value} WHERE CONNECTION_ID = ${connection_id}`
+            `UPDATE PLAYERS SET SCORE = SCORE + ${value} WHERE CONNECTION_ID = '${connection_id}'`
           );
           break;
         default:
@@ -71,7 +73,7 @@ class GameDatabase {
   async delete(connection_id) {
     try {
       const db = await Database.open(this.dbPath);
-      await db.run(`DELETE PLAYERS WHERE CONNECTION_ID = ${connection_id}`);
+      await db.run(`DELETE FROM PLAYERS WHERE CONNECTION_ID = '${connection_id}'`);
     } catch (error) {
       throw new Error(`GameDatabase - delete - ${error} \n`);
     }
