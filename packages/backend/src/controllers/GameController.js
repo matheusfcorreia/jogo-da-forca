@@ -9,7 +9,6 @@ class GameController {
 
     this.resetGame = async () => {
       this.matchedLetters = [];
-      // this.Io.sockets.emit('setMatched', this.matchedLetters);
 
       await GameDatabase.update('PLAYERS');
 
@@ -20,7 +19,7 @@ class GameController {
   async setWord() {
     try {
       const words = await GameDatabase.select('WORDS');
-      const randomNumber = Math.floor(Math.random() * 10);
+      const randomNumber = Math.floor(Math.random() * 15);
 
       this.selectedWord = words[randomNumber];
     } catch (err) {

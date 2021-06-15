@@ -23,6 +23,11 @@ const wordsList = [
   'PESSEGO',
   'AMEIXA',
   'TOMATE',
+  'ABACAXI',
+  'FRAMBOESA',
+  'CEREJA',
+  'MELANCIA',
+  'JABUTICABA',
 ];
 
 module.exports = {
