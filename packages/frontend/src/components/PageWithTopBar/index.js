@@ -48,7 +48,10 @@ const UserOptions = () => {
     <StyledUserOptions>
       <p>Olá, {localStorage.getItem('userName')}</p>
       <SmallWhiteBar />
-      <LogOut onClick={() => history.push('/logs/novo')}>
+      <LogOut onClick={() => {
+        history.push('/logs/novo');
+        window.location.reload();
+      }}>
         <Exit />
         <p>Sair</p>
       </LogOut>
