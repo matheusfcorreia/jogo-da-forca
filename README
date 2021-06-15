@@ -1,6 +1,13 @@
 # Jogo da Forca
 Projeto de um jogo desenvolvido no curso de Ciências da Computação, 7º período, voltado ao aprendizado na área sistemas distribuidos. 
 
+Jogo deveria ser baseado no Roda-roda jequiti, porém, não segue fielmente o esquema do jogo.
+A principal diferença, é a não utilização das 3 palavras a serem descobertas.
+
+A versão v1.0 do jogo é baseada em turnos e aceita 3 jogadores por processo. A interface se comunica diretamente com um servidor que faz a geração das palavras e pode ser executada em quantos clientes o usuário quiser. 
+
+A versão v.2.0 é em tempo real, ou seja, não é baseada em turnos, aceitando as respostas dos jogadores a todo momento. Para essa versão, cada jogador deve executar seu próprio cliente em seu dispositivo. Caso a palavra seja descoberta, todos os usuários serão notificados de que há um vencedor poderão ver a quantidade de pontos feitos por ele (letras acertadas). Em seguida, o jogo será resetado e terá uma nova palavra a ser advinhada.
+
 
 ### Requisitos:
 - NodeJS  na versão ^14
@@ -8,8 +15,46 @@ Projeto de um jogo desenvolvido no curso de Ciências da Computação, 7º perí
 - Docker-compose na versão 1.28.2
 - Yarn na versão 1.22.10
 
-**v1.0**
- Como executar:
+
+Como executar:
 
 > **yarn**
 > **yarn dev --build**
+
+**v1.0**
+
+Acessar o jogo: http://localhost:3006
+
+Versão local do jogo para 3 jogadores.
+
+**Regras**: 
+ - Podem ser executados quantos clientes forem necessarios.
+ - Máximo 3 jogadores por cliente executado.
+ - Cada cliente é uma instância do jogo.
+ - Cada jogador deverá inserir a letra no seu turno
+ - Quem acertar mais letras da palavra, vence.
+
+Utiliza de uma API em NodeJS que fornece a palavra à interface em ReactJs.
+É possível gerar quantas interfaces quiser para jogar o game.
+
+**v2.0**
+
+
+Acessar o jogo: http://localhost:3006
+
+Versão do jogo multiprocessada em tempo real, podendo conter a quantidade de jogadores desejada.
+
+**Regras**: 
+ - Cada jogador deve acessar o cliente de seu dispositivo.
+ - Não há turnos.
+ - Quem acertar mais letras da palavra, vence.
+
+Implementada com as tecnologias da versão v1.0 porém com a arquitetura de Socket.
+
+Sendo assim, o jogo suporta quantos jogadores se conectarem.
+
+Pergunta da versão:
+
+`Quão difícil seria implementar uma modalidade de jogo em que cada jogador pode responder ao mesmo tempo, aquele que responder certo primeiro ganha o prêmio, e os que responderem errado perdem pontos?`
+
+`R: Essa versão do jogo já é em tempo real, ou seja, aceita respostas de todos os jogadores a todo momento. Sendo assim, falando um pouco da dificuldade para se desenvolver esse tipo de jogo, posso citar o processo de controle do que cada usuário visualiza, pois sem um controle de turnos ou algo do tipo, é complicado manter todos jogadores com a versão mais atualizada do game.`
