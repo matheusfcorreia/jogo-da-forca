@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const Container = styled.form`
   display: grid;
-  grid-template-rows: 50px 50px 190px 150px 40px;
+  grid-template-rows: 50px 150px 190px 150px 40px;
   grid-template-columns: 1fr;
   align-items: center;
   justify-items: center;
@@ -19,11 +19,12 @@ export const PlayersContainer = styled.div`
   justify-content: space-between;
   overflow: auto;
   border-radius: 5px;
-  align-items: center;
+  align-content: flex-start;
 `;
 
 export const Player = styled.div`
   font-weight: 600;
+  font-size: 20px;
   border-radius: 5px;
   color: #0072BC;
   background-color: ${(props) => props.chance ? '#00FFAE' : ''};
@@ -35,6 +36,7 @@ export const Tip = styled.div`
   color: #37AD8C;
   font-size: 30px;
   font-weight: 700;
+  margin-top: 70px;
 `;
 
 export const HeaderBar = styled.div`
@@ -50,7 +52,7 @@ export const HeaderBar = styled.div`
 
 export const Letter = styled.span`
   display: grid;
-  width: 50px;
+  width: 60px;
   height: 80px;
   font-size: 50px;
   font-weight: 700;

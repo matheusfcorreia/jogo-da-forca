@@ -1,5 +1,5 @@
 import App from './app';
-import environment from './common/environment';
+
 import PlayersController from './controllers/PlayersController';
 import GameController from './controllers/GameController';
 import GameDatabase from './services/GameDatabase';

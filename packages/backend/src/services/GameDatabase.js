@@ -58,9 +58,14 @@ class GameDatabase {
           );
           break;
         case 'PLAYERS':
-          await db.run(
-            `UPDATE PLAYERS SET SCORE = SCORE + ${value} WHERE CONNECTION_ID = '${connection_id}'`
-          );
+          if (!connection_id) {
+            await db.run(`UPDATE PLAYERS SET SCORE = 0`);
+          } else {
+            await db.run(
+              `UPDATE PLAYERS SET SCORE = SCORE + ${value} WHERE CONNECTION_ID = '${connection_id}'`
+            );
+          }
+
           break;
         default:
           throw new Error('Erro no update');
